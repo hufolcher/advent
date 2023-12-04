@@ -10,14 +10,16 @@ TAB_SIZE = len(TAB)
 
 GEARS = {}
 
+
 def is_adjacent(line_index, inline_index):
-    for i in range(line_index -1, line_index + 2):
-        for j in range(inline_index -1, inline_index + 2):
+    for i in range(line_index - 1, line_index + 2):
+        for j in range(inline_index - 1, inline_index + 2):
             if i >= 0 and i < TAB_SIZE:
                 if j >= 0 and j < INLINE_SIZE:
                     if TAB[i][j] != "." and not TAB[i][j].isdigit():
-                        return(True)
-    return(False)
+                        return True
+    return False
+
 
 def compute_for_gear(value, line_index_range, inline_index_range):
     for i in line_index_range:
@@ -25,10 +27,11 @@ def compute_for_gear(value, line_index_range, inline_index_range):
             if i >= 0 and i < TAB_SIZE:
                 if j >= 0 and j < INLINE_SIZE:
                     if TAB[i][j] == "*":
-                        if (i,j) not in GEARS:
-                            GEARS[(i,j)] = [value]
+                        if (i, j) not in GEARS:
+                            GEARS[(i, j)] = [value]
                         else:
-                            GEARS[(i,j)] += [value]
+                            GEARS[(i, j)] += [value]
+
 
 part1_sum = 0
 
@@ -47,7 +50,16 @@ for line_index in range(TAB_SIZE):
                 if valid:
                     value = int(current)
                     part1_sum += value
-                    compute_for_gear(value, [line_index-1, line_index, line_index+1], [index for index in range(inline_index-len(current) - 1,inline_index + 1)])
+                    compute_for_gear(
+                        value,
+                        [line_index - 1, line_index, line_index + 1],
+                        [
+                            index
+                            for index in range(
+                                inline_index - len(current) - 1, inline_index + 1
+                            )
+                        ],
+                    )
                 current = ""
                 valid = False
 print("Part 1:", part1_sum)
