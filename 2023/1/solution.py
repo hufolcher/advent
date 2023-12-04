@@ -1,21 +1,23 @@
 _map = {
-    '0': 'zero',
-    '1': 'one',
-    '2': 'two',
-    '3': 'three',
-    '4': 'four',
-    '5': 'five',
-    '6': 'six',
-    '7': 'seven',
-    '8': 'eight',
-    '9': 'nine',
+    "0": "zero",
+    "1": "one",
+    "2": "two",
+    "3": "three",
+    "4": "four",
+    "5": "five",
+    "6": "six",
+    "7": "seven",
+    "8": "eight",
+    "9": "nine",
 }
+
 
 def compute(data: str):
     digit_list = [char for char in data if char.isdigit()]
     return int(f"{digit_list[0]}{digit_list[-1]}")
 
-with open('input.txt', 'r') as file:
+
+with open("input.txt", "r") as file:
     sum_1 = 0
     sum_2 = 0
     for line in file:
