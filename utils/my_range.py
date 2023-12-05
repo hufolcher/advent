@@ -56,19 +56,6 @@ class MyRange:
         else:
             raise ValueError(f"Unknown type '{other.__class__.__name__}'")
 
-    def mask(self, other: object) -> (list, list):
-        if other.start >= self.start and other.stop <= self.stop:
-            return (self, None)
-        elif self.start <= other.start and self.stop >= other.start:
-            return (
-                MyRange(other.start, self.stop),
-                MyRange(self.start, other.start - 1),
-            )
-        elif self.start <= other.stop and self.stop >= other.stop:
-            return (MyRange(self.start, other.stop), MyRange(other.stop + 1, self.stop))
-        else:
-            return (None, self)
-
     def strict_left(self, value: int):
         if value in self:
             if value == self.start:
