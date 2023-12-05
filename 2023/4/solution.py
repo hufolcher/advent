@@ -2,7 +2,7 @@ part2_pokedex = [0] * 500  # up to 500 Cards
 
 
 def raw_to_int_list(raw: str):
-    return [int(string) for string in raw.strip().split(" ") if string != ""]
+    return [int(string) for string in raw.strip().split()]
 
 
 with open("input.txt", "r") as file:
