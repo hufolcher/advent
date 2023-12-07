@@ -28,7 +28,6 @@ with open(f"{folder_path}/input.txt", "r") as file:
     part2_time_int_list = [int(part2_time_str)]
     part2_distance_int_list = [int(part2_distance_str)]
 
-
     def solve(time_list, distance_list):
         total_prod = 1
 
@@ -48,7 +47,7 @@ with open(f"{folder_path}/input.txt", "r") as file:
                 ways *= 0
             total_prod *= ways
 
-        return(total_prod)
+        return total_prod
 
     print("Part 1 result is:", solve(part1_time_int_list, part1_distance_int_list))
     print("Part 2 result is:", solve(part2_time_int_list, part2_distance_int_list))
