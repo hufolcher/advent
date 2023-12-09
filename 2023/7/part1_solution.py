@@ -6,8 +6,8 @@ utils_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 sys.path.append(os.path.abspath(utils_path))
 
-from strenght import Strenght
 from hand import Hand
+from strenght import Strenght
 
 strenght_map = {
     Strenght.five_of_a_kind: [],
@@ -29,13 +29,13 @@ for key in strenght_map.keys():
     strenght_map[key].sort()
 
 final = (
-strenght_map[Strenght.hight_card]
-+ strenght_map[Strenght.one_pair]
-+ strenght_map[Strenght.two_pair]
-+ strenght_map[Strenght.three_of_a_kind]
-+ strenght_map[Strenght.full_house]
-+ strenght_map[Strenght.four_of_a_kind]
-+ strenght_map[Strenght.five_of_a_kind]
+    strenght_map[Strenght.hight_card]
+    + strenght_map[Strenght.one_pair]
+    + strenght_map[Strenght.two_pair]
+    + strenght_map[Strenght.three_of_a_kind]
+    + strenght_map[Strenght.full_house]
+    + strenght_map[Strenght.four_of_a_kind]
+    + strenght_map[Strenght.five_of_a_kind]
 )
 
 part1_sum = 0
@@ -43,4 +43,3 @@ for index, card in enumerate(final):
     part1_sum += (index + 1) * card.bid
 
 print("Part 1 is:", part1_sum)
-

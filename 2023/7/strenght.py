@@ -1,5 +1,6 @@
 from enum import IntEnum, auto
 
+
 class Strenght(IntEnum):
     five_of_a_kind = 0
     four_of_a_kind = auto()
@@ -11,4 +12,3 @@ class Strenght(IntEnum):
 
     def __str__(self) -> str:
         return self.name
-

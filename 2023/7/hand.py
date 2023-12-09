@@ -1,4 +1,5 @@
 from collections import defaultdict
+
 from strenght import Strenght
 
 CARDS = {
@@ -17,12 +18,14 @@ CARDS = {
     "2": 1,
 }
 
+
 def card_max(data: list):
     max = "2"
     for elt in data:
         if CARDS[elt] > CARDS[max]:
             max = elt
     return max
+
 
 class Hand(str):
     def __new__(cls, value: str, bid: int):
@@ -80,8 +83,8 @@ class Hand(str):
         for card in self:
             found_card[card] += 1
 
-        found_j = found_card['J']
-        del found_card['J']
+        found_j = found_card["J"]
+        del found_card["J"]
 
         pair_found = False
         pair_value = None
@@ -93,7 +96,11 @@ class Hand(str):
                 return True, Strenght.five_of_a_kind
 
             elif pattern == 4:
-                return (False, self.replace("J", card, found_j)) if found_j else (True, Strenght.four_of_a_kind)
+                return (
+                    (False, self.replace("J", card, found_j))
+                    if found_j
+                    else (True, Strenght.four_of_a_kind)
+                )
 
             elif pattern == 3:
                 if pair_found:
@@ -103,7 +110,11 @@ class Hand(str):
 
             elif pattern == 2:
                 if pair_found:
-                    return (False, self.replace("J", max(card, pair_value), found_j)) if found_j else (True, Strenght.two_pair)
+                    return (
+                        (False, self.replace("J", max(card, pair_value), found_j))
+                        if found_j
+                        else (True, Strenght.two_pair)
+                    )
 
                 elif three_found:
                     return True, Strenght.full_house
@@ -127,7 +138,9 @@ class Hand(str):
                 if not len(found_card):
                     return False, self.replace("J", "A", found_j)
                 else:
-                    return False, self.replace("J", card_max([key for key in found_card.keys()]), found_j)
+                    return False, self.replace(
+                        "J", card_max([key for key in found_card.keys()]), found_j
+                    )
             else:
                 return True, Strenght.hight_card
 
