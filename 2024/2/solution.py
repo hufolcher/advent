@@ -14,11 +14,9 @@ def is_safe(entries, whithout: int = None):
     reversed_entries = entries[::-1]
     return is_increasing_safe(entries) or is_increasing_safe(reversed_entries)
 
-
 s1 = 0
 s2 = 0
 with open("input.txt", "r") as file:
-    s1, s2 = 0, 0
     for line in file:
         entries = [int(raw_entry) for raw_entry in line.strip().split(" ")]
         if is_safe(entries):

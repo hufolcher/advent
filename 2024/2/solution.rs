@@ -6,7 +6,7 @@ fn is_safe(first: &i32, following: &i32, decreasing: bool) -> bool {
 }
 
 fn row_is_increasing_safe(row: &[i32], reverse: bool) -> bool {
-    row.into_iter().zip(row[1..].into_iter()).all(|(x,y)| is_safe(x, y, reverse))
+    row.iter().zip(row[1..].iter()).all(|(x,y)| is_safe(x, y, reverse))
 }
 
 fn row_is_safe(row: &[i32]) -> bool {
