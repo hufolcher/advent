@@ -22,5 +22,5 @@ with open("input.txt", "r") as file:
                     if {data[i-1][j-1], data[i+1][j+1]} == {"M","S"} and {data[i-1][j+1], data[i+1][j-1]} == {"M","S"}:
                         s2 +=1
 
-print("Part1 is:", s1)
+print("Part 1 is:", s1)
 print("Part 2 is:", s2)
