@@ -16,7 +16,7 @@ Solve puzzles from multiple years in both **Python** and **Rust**, with scripts 
 ---
 
 ## 🗂️ Repository Structure
-
+`
 AoC/
 ├── rust_workspace/
 │   ├── Cargo.toml
@@ -34,10 +34,7 @@ AoC/
 │ └── ...
 ├── fetch.py # Creates folders & fetches input for a given year/day
 └── run_all.py # Executes all solutions for all years and languages
-
-yaml
-Copier
-Modifier
+`
 
 Each day's folder includes:
 - `input.txt`: your puzzle input  
