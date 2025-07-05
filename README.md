@@ -45,8 +45,8 @@ Each day's folder includes:
 ## 🛠️ Setup
 
 ### 1. Install dependencies
-
-Install Python package to fetch input from the AoC website:
+Python and Rust toolchain (For rust use ```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```)
+Install this Python package to fetch input from the AoC website:
 
 ```bash
 pip install advent-of-code-data
