@@ -16,7 +16,7 @@ Solve puzzles from multiple years in both **Python** and **Rust**, with scripts 
 ---
 
 ## 🗂️ Repository Structure
-`
+```
 AoC/
 ├── rust_workspace/
 │   ├── Cargo.toml
@@ -34,7 +34,7 @@ AoC/
 │ └── ...
 ├── fetch.py # Creates folders & fetches input for a given year/day
 └── run_all.py # Executes all solutions for all years and languages
-`
+````
 
 Each day's folder includes:
 - `input.txt`: your puzzle input  
@@ -65,6 +65,7 @@ python fetch.py 2023 1
 ```
 This creates:
 
+```
 2023/
 └── day01/
     ├── python/
@@ -73,6 +74,7 @@ This creates:
     └── rust/
         ├── input.txt
         └── solution.rs
+```
 
 🚀 Running Solutions
 ```
@@ -91,20 +93,18 @@ Your solution scripts should read from input.txt in the same folder.
 🔁 Run All Solutions
 Automatically run all Python and Rust solutions for all days and years:
 
-bash
-Copier
-Modifier
+```
 python run_all.py
+```
+
 This script will:
 
-Recursively find all solution.py and solution.rs files
-
-Run them in their respective directories
-
-Print the output with clear headings
+- Recursively find all solution.py and solution.rs files
+- Run them in their respective directories
+- Print the output with clear headings
 
 ✅ Example Output
-
+```
 📅 2023 / Day 01 / python
 Part 1: 1234
 Part 2: 5678
@@ -112,6 +112,7 @@ Part 2: 5678
 📅 2023 / Day 01 / rust
 Part 1: 1234
 Part 2: 5678
+```
 
 📌 Notes
 Make sure solution.py and solution.rs read from input.txt in the same directory.
