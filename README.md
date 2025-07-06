@@ -47,11 +47,21 @@ Each day's folder includes:
 ### 1. Install dependencies
 Python and Rust toolchain (For Rust use ```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```)
 
+
 Install this Python package to fetch input from the AoC website:
 
-```bash
+### Basic 
+```
 pip install advent-of-code-data
 ```
+### With uv venv
+```
+curl -Ls https://astral.sh/uv/install.sh | bash
+uv venv
+source .venv/bin/activate
+uv pip install advent-of-code-data
+```
+
 
 ### 2. AOC session token has to be available in environmment:
 ```
