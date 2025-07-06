@@ -1,4 +1,4 @@
-# 🎄 Advent of Code – Multi-Year, Multi-Language
+# 🎄 Advent of Code
 
 Welcome to a fully automated **Advent of Code** repository!  
 Solve puzzles from multiple years in both **Python** and **Rust**, with scripts to manage folder structure, fetch inputs, and run all solutions.
