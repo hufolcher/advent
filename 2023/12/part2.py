@@ -49,7 +49,7 @@ def count(springs: str, layout: tuple):
             return count(springs[i + 1 :], layout[1:])
 
 
-with open(f"{folder_path}/input.txt", "r") as file:
+with sys.stdin as file:
     part1_sum = 0
     part2_sum = 0
 

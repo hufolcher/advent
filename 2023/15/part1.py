@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(utils_path))
 
 if __name__ == "__main__":
     part1_sum = 0
-    with open(f"{folder_path}/input.txt", "r") as file:
+    with sys.stdin as file:
         raw = []
         for line in file:
             raw += line.strip("\n").split(",")
@@ -16,8 +16,8 @@ if __name__ == "__main__":
         for command in raw:
             command_hash = 0
             for c in command:
-                command_hash+= ord(c)
-                command_hash*= 17
+                command_hash += ord(c)
+                command_hash *= 17
                 command_hash %= 256
             part1_sum += command_hash
 

@@ -1,3 +1,5 @@
+import sys
+
 _map = {
     "0": "zero",
     "1": "one",
@@ -17,7 +19,7 @@ def compute(data: str):
     return int(f"{digit_list[0]}{digit_list[-1]}")
 
 
-with open("input.txt", "r") as file:
+with sys.stdin as file:
     sum_1 = 0
     sum_2 = 0
     for line in file:

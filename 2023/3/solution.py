@@ -1,6 +1,8 @@
+import sys
+
 tab = []
 
-with open("input.txt", "r") as file:
+with sys.stdin as file:
     for line in file:
         tab += [[char for char in line.rstrip("\n")]]
 

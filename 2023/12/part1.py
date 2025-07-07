@@ -50,7 +50,7 @@ def solve_line(line, target_layout):
 
 
 if __name__ == "__main__":
-    with open(f"{folder_path}/input.txt", "r") as file:
+    with sys.stdin as file:
         part1_sum = 0
         for i, line in enumerate(file):
             raw_line, raw_target_layout = line.strip("\n").split()

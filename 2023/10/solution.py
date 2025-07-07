@@ -1,5 +1,6 @@
 import os
 import sys
+from enum import StrEnum
 from collections import defaultdict
 
 folder_path = os.path.dirname(__file__)
@@ -7,7 +8,6 @@ utils_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 sys.path.append(os.path.abspath(utils_path))
 
-from enum import StrEnum
 
 box = {
     "-": chr(0x2500),
@@ -45,7 +45,7 @@ def debug_print(data):
 
 WORLD = []
 
-with open(f"{folder_path}/input.txt", "r") as file:
+with sys.stdin as file:
     for i, line in enumerate(file):
         world_line = [Pattern(string) for string in line.strip("\n")]
         WORLD += [[Pattern.GROUND] + world_line + [Pattern.GROUND]]
@@ -133,7 +133,7 @@ with open(f"{folder_path}/input.txt", "r") as file:
                 i, j, pattern = _i, _j, _pattern
                 break
 
-    debug_print(WORLD)
+    # debug_print(WORLD)
 
     print("Part 1 farthest:", len(LOOP) // 2 + 1)
 

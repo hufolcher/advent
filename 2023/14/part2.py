@@ -8,12 +8,14 @@ utils_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 sys.path.append(os.path.abspath(utils_path))
 
+
 def part2_score(column):
     score = 0
     for index, elt in enumerate(column):
         if elt == "O":
             score += len(column) - (index)
-    return(score)
+    return score
+
 
 @cache
 def roll_east(line: str):
@@ -29,7 +31,8 @@ def roll_east(line: str):
             new_line += "." * void_in_bag + "O" * rock_in_bag + "#"
             rock_in_bag, void_in_bag = 0, 0
     new_line += "." * void_in_bag + "O" * rock_in_bag
-    return(new_line)
+    return new_line
+
 
 @cache
 def cycle(raw):
@@ -45,24 +48,22 @@ def cycle(raw):
     east = []
     for column in zip(*south):
         east += [roll_east("".join(column))]
-    return(tuple(east))
+    return tuple(east)
 
 
 if __name__ == "__main__":
-    with open(f"{folder_path}/input.txt", "r") as file:
+    with sys.stdin as file:
         raw = []
         for line in file:
             raw += [line.strip("\n")]
 
-
-
         tab = tuple(raw)
         tabs = []
-        for i in range((1000000000-110)%18 + 92):
+        for i in range((1000000000 - 110) % 18 + 92):
             tab = cycle(tab)
 
         part2_sum = 0
-        for column in (zip(*tab)):
+        for column in zip(*tab):
             part2_sum += part2_score(column)
 
         print("Part 2 is:", part2_sum)

@@ -1,10 +1,11 @@
+import sys
 from collections import defaultdict
 
 left_list = []
 right_list = []
 right_list_appearances = defaultdict(int)
 
-with open("input.txt", "r") as file:
+with sys.stdin as file:
     for line in file:
         parsed_left, parsed_right = line.strip().split("   ")
         left_list.append(int(parsed_left))
@@ -12,5 +13,4 @@ with open("input.txt", "r") as file:
         right_list.append(right_parsed)
         right_list_appearances[right_parsed] += 1
 
-print("Part1 is:", sum([abs(left - right) for left, right in zip(sorted(left_list),sorted(right_list))]))
-print("Part 2 is:", sum([left*right_list_appearances[left] for left in left_list]))
+print("Part 2 is:", sum([left * right_list_appearances[left] for left in left_list]))

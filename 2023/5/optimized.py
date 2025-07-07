@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(utils_path))
 from utils.my_range import MyRange
 
 seed_map = {}
-with open(f"{folder_path}/input.txt", "r") as file:
+with sys.stdin as file:
     raw_seed_int_list = [
         int(seed_str) for seed_str in file.readline().split(":")[1].strip().split()
     ]

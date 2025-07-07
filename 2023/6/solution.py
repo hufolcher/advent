@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath(utils_path))
 
 EPSILON = 0.00000001
 
-with open(f"{folder_path}/input.txt", "r") as file:
+with sys.stdin as file:
     part1_time_int_list = [
         int(time_str) for time_str in file.readline().split(":")[1].strip().split()
     ]

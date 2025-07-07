@@ -29,7 +29,7 @@ def debug_print_universe():
         )
 
 
-with open(f"{folder_path}/input.txt", "r") as file:
+with sys.stdin as file:
     raw = []
     for i, line in enumerate(file):
         universe_line = line.strip("\n")

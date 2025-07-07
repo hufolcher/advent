@@ -43,7 +43,7 @@ def symetry_from_pattern(pattern):
 
 
 if __name__ == "__main__":
-    with open(f"{folder_path}/input.txt", "r") as file:
+    with sys.stdin as file:
         part1_sum = 0
         raw_patterns = [[]]
         for line in file:

@@ -7,19 +7,21 @@ utils_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 sys.path.append(os.path.abspath(utils_path))
 
+
 def hash(label: str):
     hash = 0
     for c in label:
-        hash+= ord(c)
-        hash*= 17
+        hash += ord(c)
+        hash *= 17
         hash %= 256
-    return(hash)
+    return hash
+
 
 MAP = defaultdict(OrderedDict)
 
 if __name__ == "__main__":
     part2_sum = 0
-    with open(f"{folder_path}/input.txt", "r") as file:
+    with sys.stdin as file:
         raw = []
         for line in file:
             raw += line.strip("\n").split(",")

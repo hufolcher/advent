@@ -1,5 +1,7 @@
 *.pyc
 *.ruff_cache
 *.exe
+*.txt
 *.o
+*.lock
 **/target/

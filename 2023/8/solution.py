@@ -32,7 +32,7 @@ def solve(current, count, debug):
     return current, count
 
 
-with open(f"{folder_path}/input.txt", "r") as file:
+with sys.stdin as file:
     INSTRUCTIONS = file.readline().strip()
     file.readline()
     starts = []

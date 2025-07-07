@@ -7,7 +7,7 @@ utils_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 sys.path.append(os.path.abspath(utils_path))
 
 
-with open(f"{folder_path}/input.txt", "r") as file:
+with sys.stdin as file:
     part1_sum = 0
     part2_sum = 0
 

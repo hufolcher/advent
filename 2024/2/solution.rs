@@ -1,12 +1,20 @@
-use std::fs;
 use std::error::Error;
+use std::fs;
 
 fn is_safe(first: &i32, following: &i32, decreasing: bool) -> bool {
-    (1..4).contains(&(if decreasing {following - first} else {first - following}))
+    (1..4).contains(
+        &(if decreasing {
+            following - first
+        } else {
+            first - following
+        }),
+    )
 }
 
 fn row_is_increasing_safe(row: &[i32], reverse: bool) -> bool {
-    row.iter().zip(row[1..].iter()).all(|(x,y)| is_safe(x, y, reverse))
+    row.iter()
+        .zip(row[1..].iter())
+        .all(|(x, y)| is_safe(x, y, reverse))
 }
 
 fn row_is_safe(row: &[i32]) -> bool {
@@ -18,17 +26,16 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut total1: u32 = 0;
     let mut total2: u32 = 0;
     for line in input.lines() {
-        let row : Vec<i32> = line.split(" ").map(|raw| raw.parse().unwrap()).collect();
+        let row: Vec<i32> = line.split(" ").map(|raw| raw.parse().unwrap()).collect();
         if row_is_safe(&row) {
             total1 += 1;
             total2 += 1;
-        }
-        else {
+        } else {
             for i in 0..row.len() {
-                let subrow: Vec<i32> = [&row[..i], &row[i+1..]].concat();
+                let subrow: Vec<i32> = [&row[..i], &row[i + 1..]].concat();
                 if row_is_safe(&subrow) {
                     total2 += 1;
-                    break
+                    break;
                 }
             }
         }

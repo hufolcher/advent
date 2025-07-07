@@ -37,7 +37,7 @@ def global_convert(seed, map):
     )
 
 
-with open("input.txt", "r") as file:
+with sys.stdin as file:
     part1_seeds = [
         int(seed_str) for seed_str in file.readline().split(":")[1].strip().split()
     ]

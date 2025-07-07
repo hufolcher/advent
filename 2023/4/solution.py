@@ -1,3 +1,5 @@
+import sys
+
 part2_pokedex = [0] * 500  # up to 500 Cards
 
 
@@ -5,7 +7,7 @@ def raw_to_int_list(raw: str):
     return [int(string) for string in raw.strip().split()]
 
 
-with open("input.txt", "r") as file:
+with sys.stdin as file:
     part1_sum = 0
     for line in file:
         raw_line_id, data = line.split(":")

@@ -19,7 +19,7 @@ strenght_map = {
     Strenght.hight_card: [],
 }
 
-with open(f"{folder_path}/input.txt", "r") as file:
+with sys.stdin as file:
     for line in file:
         raw_hand, raw_bid = line.split()
         hand = Hand(raw_hand, int(raw_bid))

@@ -1,3 +1,5 @@
+import sys
+
 MAX = {"red": 12, "green": 13, "blue": 14}
 
 
@@ -24,7 +26,7 @@ def power_from_sets(sets: list):
     return max_red * max_blue * max_green
 
 
-with open("input.txt", "r") as file:
+with sys.stdin as file:
     possible_id_sum = 0
     power_sum = 0
 
