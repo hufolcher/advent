@@ -22,5 +22,5 @@ with sys.stdin as file:
             if part2_enabled:
                 s2 += increment
 
-print("Part1 is:", s1)
+print("", s1)
 print("Part 2 is:", s2)

@@ -12,5 +12,5 @@ for line in sys.stdin.readlines():
     else:
         total_weight_carried[-1] += int(line.strip())
 
-print("Part1 is:", max(total_weight_carried))
+print("", max(total_weight_carried))
 print("Part2 is:", sum(sorted(total_weight_carried)[-3:]))

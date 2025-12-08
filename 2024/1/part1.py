@@ -14,7 +14,7 @@ with sys.stdin as file:
         right_list_appearances[right_parsed] += 1
 
 print(
-    "Part1 is:",
+    "",
     sum(
         [
             abs(left - right)

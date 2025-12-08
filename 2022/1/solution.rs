@@ -15,7 +15,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     }
 
     total_weight_carried.sort();
-    println!("Part1 is: {}", total_weight_carried.last().unwrap());
+    println!(" {}", total_weight_carried.last().unwrap());
     println!(
         "Part2 is: {}",
         total_weight_carried.iter().rev().take(3).sum::<u32>()

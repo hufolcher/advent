@@ -18,5 +18,5 @@ for line in sys.stdin.readlines():
     score_part1 += round_to_score_part1[first][second]
     score_part2 += round_to_score_part2[first][second]
 
-print("Part1 is:", score_part1)
+print("", score_part1)
 print("Part2 is:", score_part2)

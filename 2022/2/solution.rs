@@ -31,7 +31,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             .get(&second)
             .unwrap();
     }
-    println!("Part1 is: {}", score_part1);
+    println!(" {}", score_part1);
     println!("Part2 is: {}", score_part2);
     Ok(())
 }

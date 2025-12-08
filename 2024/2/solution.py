@@ -30,5 +30,5 @@ with sys.stdin as file:
         elif any([is_safe(entries, i) for i in range(len(entries))]):
             s2 += 1
 
-print("Part1 is:", s1)
+print("", s1)
 print("Part 2 is:", s2)
