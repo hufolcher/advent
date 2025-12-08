@@ -10,10 +10,10 @@ fn main() -> Result<(), Box<dyn Error>> {
         let number: i32 = raw_number.parse()?;
         match direction {
             "L" => {
-                current_dial = ((current_dial as i32 - number) % 100 + 100) % 100;
+                current_dial = ((current_dial - number) % 100 + 100) % 100;
             }
             "R" => {
-                current_dial = ((current_dial as i32 + number) % 100 + 100) % 100;
+                current_dial = ((current_dial + number) % 100 + 100) % 100;
             }
             _ => unreachable!(),
         }

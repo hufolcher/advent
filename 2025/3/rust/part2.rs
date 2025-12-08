@@ -21,8 +21,12 @@ fn main() -> Result<(), Box<dyn Error>> {
                         && digit > candidates[rank].unwrap())
                 {
                     candidates[rank] = Some(digit);
-                    for following_rank in (rank + 1)..BATTERIES_TO_TURN_ON_PER_BANK {
-                        candidates[following_rank] = None;
+                    for candidate in candidates
+                        .iter_mut()
+                        .take(BATTERIES_TO_TURN_ON_PER_BANK)
+                        .skip(rank + 1)
+                    {
+                        *candidate = None;
                     }
                     break;
                 }

@@ -12,7 +12,7 @@ const DIRS: [(isize, isize); 8] = [
     (1, 1),
 ];
 
-fn count_surrounding(diagram: &Vec<Vec<bool>>, i: usize, j: usize) -> usize {
+fn count_surrounding(diagram: &[Vec<bool>], i: usize, j: usize) -> usize {
     DIRS.iter()
         .filter_map(|(di, dj)| {
             let ni = i.checked_add_signed(*di)?;

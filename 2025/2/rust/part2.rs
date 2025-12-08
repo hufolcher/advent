@@ -17,7 +17,7 @@ fn sorted_dividers(n: usize) -> Vec<usize> {
     result
 }
 
-fn split_equal<'a>(s: &'a str, divider: usize) -> Vec<&'a str> {
+fn split_equal(s: &str, divider: usize) -> Vec<&str> {
     let len = s.len();
     let step = len / divider;
     (0..divider).map(|i| &s[i * step..(i + 1) * step]).collect()
