@@ -1,144 +1,255 @@
 # 🎄 Advent of Code
 
-Welcome to a fully automated **Advent of Code** repository!
-Solve puzzles from multiple years in both **Python** and **Rust**, with scripts to manage folder structure, fetch inputs, and run all solutions.
+Fully automated **Advent of Code** repository with:
+
+- Rust & Python support
+- Automatic input fetching
+- Batch execution with formatted output
+- Reference result checking
+- Automatic submission to AoC
+- Workspace-managed Rust builds
+
+No manual compilation, no copy/paste, no browser juggling.
 
 ---
 
-## 📦 Features
+## Features
 
-- 📁 Organized folder structure per year/day/language
-- 🤖 `fetch.py` to auto-generate directory layout and download inputs
-- 🚀 `run_all.py` to execute all solutions across all years and languages
-- 🧪 Supports both **Python** and **Rust**
-- 🔒 Input fetching using your AoC session token (via cookie)
-
----
-
-## 🗂️ Repository Structure
-
-```
-AoC/
-├── rust_workspace/
-│   ├── Cargo.toml
-│   └── .cargo/config.toml
-├── 2021/
-│ ├── day01/
-│ │ ├── python/
-│ │ │ ├── solution.py
-│ │ │ └── input.txt
-│ │ └── rust/
-│ │ ├── solution.rs
-│ │ └── input.txt
-│ └── ...
-├── 2022/
-│ └── ...
-├── fetch.py # Creates folders & fetches input for a given year/day
-└── run_all.py # Executes all solutions for all years and languages
-````
-
-Each day's folder includes:
-
-- `input.txt`: your puzzle input
-- `solution.py` or `solution.rs`: your solution script
+- Year / Day structured layout
+- Python solutions (`part1.py`, `part2.py`)
+- Rust solutions (workspace + per-day binaries)
+- Automatic input fetching via `aocd` + `uv`
+- Unified runner with timing, formatting & filters
+- Reference result comparison via `results.ref`
+- Automatic submission script (`submit.sh`)
+- Cross-language result verification
+- Rust workspace auto-managed
 
 ---
 
-## 🛠️ Setup
+## Repository Structure
 
-### 1. Install dependencies
-
-Python and Rust toolchain (For Rust use ```curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh```)
-
-Install this Python package to fetch input from the AoC website:
-
-### Basic
-
+```bash
+advent/
+├── 2024/
+│   ├── 1/
+│   │   ├── part1.py
+│   │   ├── part2.py
+│   │   ├── part1.rs
+│   │   ├── part2.rs
+│   │   ├── Cargo.toml
+│   │   └── input.txt
+│   ├── 2/
+│   └── ...
+├── 2025/
+│   └── ...
+├── Cargo.toml          # Rust workspace
+├── run.sh              # Run all / year / day / language
+├── submit.sh           # Submit answers to AoC
+├── sync_results.sh     # Sync historical results
+└── results.ref         # Reference answers
 ```
-pip install advent-of-code-data
-```
 
-### With uv venv
+Each day folder contains:
 
-```
+- `input.txt` – puzzle input
+- `part1.py`, `part2.py` – Python solutions
+- `part1.rs`, `part2.rs` – Rust solutions
+- `Cargo.toml` – Rust per-day binary config
+
+---
+
+## Setup
+
+### Install dependencies
+
+#### Python + uv
+
+```bash
 curl -Ls https://astral.sh/uv/install.sh | bash
 uv venv
 source .venv/bin/activate
 uv pip install advent-of-code-data
-source .venv/bin/activate
 ```
 
-### 2. AOC session token has to be available in environmment
+#### Rust
 
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-export AOC_SESSION="your_session_cookie_here"
+
+---
+
+### Set your AoC session token
+
+```bash
+export AOC_SESSION=\"your_session_cookie_here\"
 ```
 
-You can also store it in a .env file or inject it manually.
+This is required for input fetching, result syncing, and submissions.
 
-📥 Usage
-Generate Folder + Fetch Input
+---
 
-```
-python fetch.py 2023 1
+## Input Fetching
+
+Inputs are fetched automatically by `run.sh` when missing:
+
+```bash
+./run.sh 2025 1
 ```
 
 This creates:
 
-```
-2023/
-└── day01/
-    ├── solution.py
-    └── solution.rs
+```text
+2025/1/input.txt
 ```
 
-🚀 Running Solutions
+No separate fetch command is required.
 
-```
-cd 2023/day01/python
-python solution.py
-```
+---
 
-```
-cd 2023/day01/rust
-rustc solution.rs -o solution
-./solution
-```
+## Running Solutions (`run.sh`)
 
-Your solution scripts should read from input.txt in the same folder.
+### Run everything
 
-🔁 Run All Solutions
-Automatically run all Python and Rust solutions for all days and years:
-
-```
-python run_all.py
+```bash
+./run.sh --all
 ```
 
-This script will:
+### Run a full year
 
-- Recursively find all solution.py and solution.rs files
-- Run them in their respective directories
-- Print the output with clear headings
-
-✅ Example Output
-
-```
-📅 2023 / Day 01 / python
-Part 1: 1234
-Part 2: 5678
-
-📅 2023 / Day 01 / rust
-Part 1: 1234
-Part 2: 5678
+```bash
+./run.sh 2025
 ```
 
-📌 Notes
-Make sure solution.py and solution.rs read from input.txt in the same directory.
+### Run a single day
 
-The project assumes a consistent file naming convention.
+```bash
+./run.sh 2025 3
+```
 
-Rust solutions are compiled with rustc before execution.
+### Run Rust only
 
-🎯 Todo (Optional Enhancements)
+```bash
+./run.sh 2025 --rust
+./run.sh 2025 3 --rust
+```
 
-- Speedrun mode
+### Run Python only
+
+```bash
+./run.sh 2025 --python
+./run.sh 2025 3 --python
+```
+
+---
+
+### Output Format
+
+```text
+Day 1
+  Part 1 |  Python: 4035     14ms     Rust: 4035     Build:43ms  Run:3ms   Expected:4035
+  Part 2 |  Python: 5872     15ms     Rust: 5872     Build:40ms  Run:4ms   Expected:5872
+```
+
+If no solution exists:
+
+```text
+WARN: No solutions for 2025/Day 12
+```
+
+---
+
+## Reference Results (`results.ref`)
+
+Reference file format:
+
+```text
+2025 1 P1 4035
+2025 1 P2 5872
+2025 2 P1 30608905813
+2025 2 P2 31898925685
+```
+
+Used by `run.sh` to:
+
+- Check correctness
+- Display expected values inline
+- Detect regressions
+
+---
+
+## Sync Historical Results (`sync_results.sh`)
+
+Fetches your already solved AoC answers from the official website:
+
+```bash
+./sync_results.sh 2025
+```
+
+The script:
+
+- Queries AoC using `aocd`
+- Writes clean reference output to `results.ref`
+- Skips unsolved days
+- Applies rate-limiting
+
+---
+
+## Submit Answers (`submit.sh`)
+
+Submit an answer safely to AoC:
+
+### Direct value
+
+```bash
+./submit.sh 2025 1 1 4035
+```
+
+### From stdin
+
+```bash
+echo 4035 | ./submit.sh 2025 1 1
+```
+
+The script detects:
+
+- Wrong answers
+- Already solved parts
+- Server feedback in real time
+
+---
+
+## Language Cross-Check
+
+If Python and Rust are both enabled:
+
+- Outputs are compared automatically
+- If they differ, a warning is printed
+- Only matching results should be submitted
+
+If only one language is enabled, that one is used.
+
+---
+
+## Rust Workspace
+
+- All days are registered in the root `Cargo.toml` workspace
+- Each day exposes:
+  - `dayX_part1`
+  - `dayX_part2`
+- Builds are fully incremental and isolated
+
+---
+
+## Notes
+
+- All scripts are Bash-first, no Python orchestration required
+- Output formatting is fixed-width and stable
+- Clean CI-style logs
+- Suitable for:
+  - Local execution
+  - CI pipelines
+  - Benchmarking
+  - Submission automation
+
