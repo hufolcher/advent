@@ -171,9 +171,21 @@ for year_dir in $(find . -maxdepth 1 -type d -regex './[0-9]+' | sort); do
         fi
 
         input_file="$day_dir/input.txt"
-        if [[ ! -f "$input_file" ]]; then
+
+        if [[ ! -s "$input_file" ]]; then
             echo -e "${YELLOW}Fetching input.txt for $year/$day${NC}"
-            AOC_YEAR="$year" AOC_DAY="$day" uv run aocd "$year" "$day" > "$input_file"
+
+            if ! AOC_YEAR="$year" AOC_DAY="$day" uv run aocd "$year" "$day" > "$input_file"; then
+                echo -e "${RED}Failed to fetch input for $year/$day${NC}"
+                rm -f "$input_file"
+                continue
+            fi
+
+            if [[ ! -s "$input_file" ]]; then
+                echo -e "${RED}Fetched input is empty for $year/$day${NC}"
+                rm -f "$input_file"
+                continue
+            fi
         fi
 
         has_solution=false
