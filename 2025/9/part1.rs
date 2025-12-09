@@ -20,14 +20,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut pairs: Vec<_> = red_tiles
         .iter()
         .enumerate()
-        .flat_map(|(i, a)| {
-            red_tiles
-                .iter()
-                .enumerate()
-                .filter_map(move |(j, b)| (i < j).then_some((area(*a, *b), (i, j))))
-        })
+        .flat_map(|(i, a)| red_tiles[i + 1..].iter().map(|&b| (area(*a, b))))
         .collect();
-    pairs.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap());
-    println!("{:?}", pairs[0].0);
+    pairs.sort_by(|a, b| b.partial_cmp(a).unwrap());
+
+    println!("{:?}", pairs[0]);
     Ok(())
 }

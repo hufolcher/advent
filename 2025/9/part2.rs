@@ -49,9 +49,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut vertical_borders: Vec<(u32, RangeInclusive<u32>)> = Vec::new();
     let mut horizontal_borders: Vec<(u32, RangeInclusive<u32>)> = Vec::new();
 
-    for pair in red_tiles_positions.windows(2) {
-        let (x1, y1) = pair[0];
-        let (x2, y2) = pair[1];
+    for (&(x1, y1), &(x2, y2)) in red_tiles_positions
+        .iter()
+        .zip(red_tiles_positions.iter().skip(1))
+    {
         if x1 == x2 {
             let start = y1.min(y2);
             let end = y1.max(y2);
@@ -70,19 +71,17 @@ fn main() -> Result<(), Box<dyn Error>> {
         .iter()
         .enumerate()
         .flat_map(|(i, a)| {
-            red_tiles_positions
+            red_tiles_positions[i + 1..]
                 .iter()
-                .enumerate()
-                .skip(i + 1)
-                .filter(|(_, d)| {
-                    raycast_x_then_y(&horizontal_borders, &vertical_borders, *a, **d)
-                        && raycast_x_then_y(&horizontal_borders, &vertical_borders, **d, *a)
+                .filter(|&&d| {
+                    raycast_x_then_y(&horizontal_borders, &vertical_borders, *a, d)
+                        && raycast_x_then_y(&horizontal_borders, &vertical_borders, d, *a)
                 })
-                .map(move |(j, d)| (area(*a, *d), (i, j)))
+                .map(|&d| area(*a, d))
         })
         .collect();
-    pairs.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap());
+    pairs.sort_by(|a, b| b.partial_cmp(a).unwrap());
 
-    println!("{:?}", pairs[0].0);
+    println!("{:?}", pairs[0]);
     Ok(())
 }
